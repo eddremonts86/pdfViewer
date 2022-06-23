@@ -1,10 +1,11 @@
 <template>
-  <div id="app">
-    <v-row>
-      <v-col>
+  <div id="app" data-app>
+    <v-row>      
+      <v-col cols="12" md="5">
+        
         <pdf-form-editor class="ma-8" @fileUrl="fileUrl" @update:formData="updateJsonData" />
       </v-col>
-      <v-col>
+      <v-col cols="12" md="7">
         <!-- <web-files-viewer :path="`${publicPath}webviewer`" :url="url" :key="url" /> -->
         <web-viewer-template-formatter :jsonData="formData" :templateFileUrl="templateFile" :key="url"   />
       </v-col>
@@ -14,14 +15,12 @@
 
 <script>
 import webViewerTemplateFormatter from "@/components/webViewerTemplateFormatter.vue"; 
-// import webFilesViewer from "~/components/webFilesViewer.vue"; 
 import pdfFormEditor from "@/components/pdfFormEditor.vue";
 export default {
   name: "app",
   components: {
-   // webFilesViewer,
     pdfFormEditor,
-    webViewerTemplateFormatter
+    webViewerTemplateFormatter,
   },
   data() {
     return {
@@ -58,5 +57,9 @@ body {
 }
 #webviewer {
   height: 100vh;
+}
+.py-5{
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 </style>

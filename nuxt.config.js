@@ -1,11 +1,17 @@
 export default {
+
+  loading: {
+    color: 'green',
+    failedColor: 'red',
+    height: '3px'
+  }, 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "webviewer-nuxtjs-sample",
     htmlAttrs: {
       lang: "en",
     },
-    meta: [ 
+    meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { hid: "description", name: "description", content: "" },
@@ -15,7 +21,10 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [
+          '@mdi/font/css/materialdesignicons.css',
+
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [{ src: "~/plugins/vue-session.client.js" }],
@@ -48,8 +57,27 @@ export default {
     bootstrapCSS: true,
     bootstrapVueCSS: true,
   },*/
-  vuetify: {
-    customVariables: ["~/assets/variables.scss"],
+   vuetify: {
+    theme: {
+      themes: {
+        light: {
+          primary: "#0f08af",
+          secondary: "#e4e9f4",
+          tertiary: "#03032b",
+          tertiary_dim: "#2b334e",
+          danger: "#d12c2c",
+          warning: "#fcb126",
+          success: "#00b052",
+          white: "#fafafa",
+          field_bg: "#f7fafd",
+          field_border: "#dadeeb",
+          bg_color: "#f2f3f4",
+          placeholder: "#abacbf",
+          greyneutral: "#6f6f6f",
+        },
+      },
+    },
+    treeShake: true,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

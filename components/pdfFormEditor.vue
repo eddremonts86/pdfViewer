@@ -2,6 +2,8 @@
   <v-card>
     <v-card-title>
       <h2>Edit Document</h2>
+      <v-spacer />
+      <upload-document />
     </v-card-title>
     <v-divider />
     <v-card-text>
@@ -107,53 +109,66 @@
       </v-btn>
       <v-spacer />
       <client-only>
-         <update-viewer :data-to-fill="form" :fileUrl="fileUrl" @update:fileUrl="downloadDocx"/>
-         <download-docx :data-to-fill="form" :fileUrl="fileUrl"/>
-       </client-only> 
+        <update-viewer
+          :data-to-fill="form"
+          :fileUrl="fileUrl"
+          @update:fileUrl="downloadDocx"
+        />
+        <download-docx :data-to-fill="form" :fileUrl="fileUrl" />
+      </client-only>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
- 
+import uploadDocument from "./uploadDocument.vue"; 
+
 export default {
-  name:"pdfFormEditor",
-  components: {    
-    updateViewer: () => { if (process.client) { return import('./ updateViewer.vue') } },
-    downloadDocx: () => { if (process.client) { return import('./downloadDocx.vue') } }
+  name: "pdfFormEditor",
+  components: {
+    updateViewer: () => {
+      if (process.client) {
+        return import("./ updateViewer.vue");
+      }
+    },
+    downloadDocx: () => {
+      if (process.client) {
+        return import("./downloadDocx.vue");
+      }
+    },
+    uploadDocument
   },
   mounted() {
-    this.$emit('fileUrl', this.fileUrl)
-    this.$emit('update:formData',this.form)
+    this.$emit("fileUrl", this.fileUrl);
+    this.$emit("update:formData", this.form);
   },
   data: () => ({
     form: {
-      fornavn: 'Eduardo Inerarte',
-      fuldt_navn: 'Emilio Emiliano',
-      vej_og_nummer: 'Købmagergade 52A, 1150 København',
-      postnummer: '4571',
-      by: 'Resights',
-      dato: '17/05/2020',
-      bruger_fornavn: 'Mikkel Mikkelsen',
-      din_dit_jeres: 'din', // from din-dit-jeres
-      ejendomstype: 'Hus',
-      den_det: 'den', // from den-det
-      ejendomstype_flertal: '1 542 145 dk',
-      i_paa_by: '1 852 222', // from i-paa_by
-      dig_jer: 'jer', // from dig-jer
-      bruger_fuldt_navn: 'Resights',
-      bruger_email: 'resights@google.dk',
-      bruger_tel: '+45 546 454'
-    },    
-    fileUrl: '/docs/Real_estate_agent_case.docx',    
+      fornavn: "Eduardo Inerarte",
+      fuldt_navn: "Emilio Emiliano",
+      vej_og_nummer: "Købmagergade 52A, 1150 København",
+      postnummer: "4571",
+      by: "Resights",
+      dato: "17/05/2020",
+      bruger_fornavn: "Mikkel Mikkelsen",
+      din_dit_jeres: "din", // from din-dit-jeres
+      ejendomstype: "Hus",
+      den_det: "den", // from den-det
+      ejendomstype_flertal: "1 542 145 dk",
+      i_paa_by: "1 852 222", // from i-paa_by
+      dig_jer: "jer", // from dig-jer
+      bruger_fuldt_navn: "Resights",
+      bruger_email: "resights@google.dk",
+      bruger_tel: "+45 546 454"
+    },
+    fileUrl: "/docs/Real_estate_agent_case.docx"
   }),
   methods: {
     downloadDocx(fileUrl) {
-      this.$emit('fileUrl', fileUrl),
-      this.$emit('update:formData',this.form)
-    } 
-  },
-}
+      this.$emit("fileUrl", fileUrl), this.$emit("update:formData", this.form);
+    }
+  }
+};
 </script>
 
 <style>

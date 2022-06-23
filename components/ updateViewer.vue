@@ -12,7 +12,7 @@ import JSzipUtils from "jszip-utils";
 import { saveAs } from "file-saver";
 
 export default {
-  name: " updateViewer",
+  name: "UpdateViewer",
   props: {
     fileUrl: {
       type: String,
